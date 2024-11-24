@@ -60,7 +60,21 @@ void ajoutertache(){
 }
 
 //afficher les taches 
-void afficherlestaches(){}
+void afficherlestaches(){
+
+        for (int i = 1; i < compteur ; i++)
+    {
+      printf("------tache id  %d ---------- \n",tache[i].id);
+      printf("titre %s \n",tache[i].titre);
+      printf("description %s \n",tache[i].description);
+      printf("priotite %s \n",tache[i].priorite);
+      printf("date echeance  %d-%d-%d \n",tache[i].date.jour,tache[i].date.mois,tache[i].date.annee);
+      printf(" %s \n",tache[i].status);
+
+    }
+
+
+}
 void miseajourtaches() {}
 void supprimertaches() {}
 void filtrerparpriorite() {}
