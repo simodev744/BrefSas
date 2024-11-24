@@ -16,9 +16,50 @@ struct Tache{
     
 };
 
+struct Tache tache[100];
+int compteur=1;
+int taskidcompteur=0;
+
 
 void generatedata() {}
-void ajoutertache(){}
+
+//ajouter une tache 
+void ajoutertache(){
+
+    taskidcompteur++;
+    tache[compteur].id=taskidcompteur;
+  
+
+    printf("entrez le titre  \n");
+    scanf(" %s", tache[compteur].titre);
+
+    printf("entrez la description de la tache  \n");
+    scanf(" %s", tache[compteur].description);
+
+    printf("entrez la priorite  \n");
+    scanf(" %s", tache[compteur].priorite);
+
+    printf("entrez le jour  \n");
+    scanf(" %d", &tache[compteur].date.jour);
+
+    printf("entrez le mois  \n");
+    scanf(" %d", &tache[compteur].date.mois);
+
+
+    printf("entrez l annee  \n");
+    scanf("%d", &tache[compteur].date.annee);
+
+    printf("entrez status de la tache  \n");
+    scanf(" %s", tache[compteur].status);
+
+    compteur++;
+
+    printf("tache ajoutee avec succees\n");
+
+
+}
+
+//afficher les taches 
 void afficherlestaches(){}
 void miseajourtaches() {}
 void supprimertaches() {}
@@ -26,7 +67,21 @@ void filtrerparpriorite() {}
 void ordonnerlestaches() {}
 void filtrerparstatus(){}
 void stocker() {}
-void menu(){}
+
+ //menu 
+void menu(){
+    printf("-------------------------task-managment-----------------------------------------------\n");
+    printf("  1.ajouter une tache  \n");
+    printf("  2.afficher les taches  \n");
+    printf("  3.mise a jour une tache  \n");
+    printf("  4.supprimer une tache  \n");
+    printf("  5.filtrer les tache par priorite  \n");
+    printf("  6.ordonner les taches  \n");
+    printf("  7.filtrer les tache par status \n");
+    printf("  8.stocker dans un fichier texte \n");
+    printf("  9.generer pseudo taches  \n");
+    printf("  10.quiter le programme \n");
+}
 
 
 
