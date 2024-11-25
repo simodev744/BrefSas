@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include<string.h>
 
 struct Date{
     int jour;
@@ -55,7 +56,6 @@ void ajoutertache(){
     compteur++;
 
     printf("tache ajoutee avec succees\n");
-
 
 }
 
@@ -130,8 +130,6 @@ void miseajourtaches() {
 void supprimertaches() {
     int idRecherche;
     int t = 0;
-
-  
     printf("entrez l'id de la tache que vous voulez supprimer : ");
     scanf("%d", &idRecherche);
 
@@ -151,9 +149,7 @@ void supprimertaches() {
             for (int j = i; j < compteur - 1; j++) {
                 tache[j] = tache[j + 1]; 
             }
-
             compteur--;
-
             printf("La tache est supprimee !\n");
             break;
         }
@@ -164,19 +160,60 @@ void supprimertaches() {
     }
 }
 
-void filtrerparpriorite() {}
-void ordonnerlestaches() {}
-void filtrerparstatus(){}
+//fonction filtrer par priorite 
+void  filtrerparpriorite() {
+    char priorite[50];
+
+    printf("Entrez une priorité : \n");
+    scanf("%s", priorite);
+
+    for (int i = 0; i < compteur; i++) {  
+
+        if (strcmp(tache[i].priorite, priorite) == 0) {  
+            printf("------Tâche ID %d ---------- \n", tache[i].id);
+            printf("Titre: %s \n", tache[i].titre);
+            printf("Description: %s \n", tache[i].description);
+            printf("Priorité: %s \n", tache[i].priorite);
+            printf("Date d'échéance: %d-%d-%d \n", tache[i].date.jour, tache[i].date.mois, tache[i].date.annee);
+            printf("Statut: %s \n", tache[i].status);
+        }
+    }
+}
+
+//fonction filtrer par status 
+void  filtrerparstatus(){  
+    char status[50];
+    printf("entrez le status completed/uncompleted : \n");
+    scanf("%s", status);
+
+    for (int i = 0; i < compteur; i++) {  
+
+        if (strcmp(tache[i].status, status) == 0) {  
+            printf("------tache ID %d ---------- \n", tache[i].id);
+            printf("titre: %s \n", tache[i].titre);
+            printf("description: %s \n", tache[i].description);
+            printf("priorité: %s \n", tache[i].priorite);
+            printf("date d'échéance: %d-%d-%d \n", tache[i].date.jour, tache[i].date.mois, tache[i].date.annee);
+            printf("statut: %s \n", tache[i].status);
+        }
+    }
+
+}   
+
+//fonction stocker  
 void stocker() {}
+void ordonnerlestaches() {}
+
+
 
  //menu 
 void menu(){
-    printf("-------------------------task-managment-----------------------------------------------\n");
+    printf("----------------------------task-managment---------------------------------------------\n");
     printf("  1.ajouter une tache  \n");
     printf("  2.afficher les taches  \n");
     printf("  3.mise a jour une tache  \n");
     printf("  4.supprimer une tache  \n");
-    printf("  5.filtrer les tache par priorite  \n");
+    printf("  5.filtrer les tache par priorite \n");
     printf("  6.ordonner les taches  \n");
     printf("  7.filtrer les tache par status \n");
     printf("  8.stocker dans un fichier texte \n");
