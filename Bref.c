@@ -31,7 +31,7 @@ void ajoutertache(){
     tache[compteur].id=taskidcompteur;
   
 
-    printf("entrez le titre  \n");
+    printf("entrez le titre \n");
     scanf(" %s", tache[compteur].titre);
 
     printf("entrez la description de la tache  \n");
@@ -50,7 +50,7 @@ void ajoutertache(){
     printf("entrez l annee  \n");
     scanf("%d", &tache[compteur].date.annee);
 
-    printf("entrez status de la tache  \n");
+    printf("entrez status de la tache \n");
     scanf(" %s", tache[compteur].status);
 
     compteur++;
@@ -200,12 +200,28 @@ void  filtrerparstatus(){
 
 }   
 
-//fonction stocker  
-void stocker() {}
+// Fonction pour enregistrer les taches 
+void stocker() {
+    FILE *fichier = fopen("tache.txt", "w");  
+    if (fichier == NULL) {
+        printf("erreur d ouvrir le fichier.\n");
+        return;
+    }
+
+    for (int i = 1; i < compteur; i++) {
+        fprintf(fichier, "---------tache id %d ----------\n", tache[i].id);
+        fprintf(fichier, "titre : %s\n", tache[i].titre);
+        fprintf(fichier, "description : %s\n", tache[i].description);
+        fprintf(fichier, "priorité : %s\n", tache[i].priorite);
+        fprintf(fichier, "date échéance : %d-%d-%d\n", tache[i].date.jour, tache[i].date.mois, tache[i].date.annee);
+        fprintf(fichier, "statut : %s\n\n", tache[i].status);
+    }
+
+    fclose(fichier);  
+    printf("Les tâches est enregistrer  dans le fichier tache.txt.\n");
+}
+
 void ordonnerlestaches() {}
-
-
-
  //menu 
 void menu(){
     printf("----------------------------task-managment---------------------------------------------\n");
@@ -220,8 +236,6 @@ void menu(){
     printf("  9.generer pseudo taches  \n");
     printf("  10.quiter le programme \n");
 }
-
-
 
 int main(){
     
