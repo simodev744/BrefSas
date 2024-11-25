@@ -72,11 +72,98 @@ void afficherlestaches(){
       printf(" %s \n",tache[i].status);
 
     }
-
-
 }
-void miseajourtaches() {}
-void supprimertaches() {}
+//fonction mettre a jour tache  
+void miseajourtaches() {
+    int idRecherche;
+    int t = 0; // indice pour dire que la tache est trouvee
+
+    printf("Entrez id  de la tache que vous voulez  mettre a jour : ");
+    scanf("%d", &idRecherche);
+
+    for (int i = 1; i < compteur; i++) {
+        if (tache[i].id == idRecherche) {
+            t = 1;
+
+            //
+            printf("tache trouvee :\n");
+            printf("id : %d\n", tache[i].id);
+            printf("titre : %s\n", tache[i].titre);
+            printf("description : %s\n", tache[i].description);
+            printf("priorite : %s\n", tache[i].priorite);
+            printf("date : %02d/%02d/%04d\n", tache[i].date.jour, tache[i].date.mois, tache[i].date.annee);
+            printf("status : %s\n", tache[i].status);
+
+        
+            printf("entrez le nouveau titre (actuel : %s) : ", tache[i].titre);
+            scanf(" %s", tache[i].titre);
+
+            printf("entrez la nouvelle description (actuelle : %s) : ", tache[i].description);
+            scanf(" %s", tache[i].description);
+
+            printf("entrez la nouvelle priorite (actuelle : %s) : ", tache[i].priorite);
+            scanf(" %s", tache[i].priorite);
+
+            printf("entrez le nouveau jour (actuel : %d) : ", tache[i].date.jour);
+            scanf("%d", &tache[i].date.jour);
+
+            printf("entrez le nouveau mois (actuel : %d) : ", tache[i].date.mois);
+            scanf("%d", &tache[i].date.mois);
+
+            printf("entrez la nouvelle annee (actuelle : %d) : ", tache[i].date.annee);
+            scanf("%d", &tache[i].date.annee);
+
+            printf("entrez le nouveau status (actuel : %s) : ", tache[i].status);
+            scanf(" %s", tache[i].status);
+
+            printf("La tache est mise a jour !\n");
+            break;
+        }
+    }
+
+    if (!t) {
+        printf("Aucune tache avec l'id  %d  \n", idRecherche);
+    }
+}
+
+// fonction supprimee  
+void supprimertaches() {
+    int idRecherche;
+    int t = 0;
+
+  
+    printf("entrez l'id de la tache que vous voulez supprimer : ");
+    scanf("%d", &idRecherche);
+
+    for (int i = 1; i < compteur; i++) {
+        if (tache[i].id == idRecherche) {
+            t= 1;
+
+            printf("tache trouvee:\n");
+            printf("id : %d\n", tache[i].id);
+            printf("titre : %s\n", tache[i].titre);
+            printf("description : %s\n", tache[i].description);
+            printf("priorite : %s\n", tache[i].priorite);
+            printf("date : %d/%d/%d\n", tache[i].date.jour, tache[i].date.mois, tache[i].date.annee);
+            printf("status : %s\n", tache[i].status);
+
+            
+            for (int j = i; j < compteur - 1; j++) {
+                tache[j] = tache[j + 1]; 
+            }
+
+            compteur--;
+
+            printf("La tache est supprimee !\n");
+            break;
+        }
+    }
+
+    if (!t) {
+        printf("Aucune tache avec l'Id %d n'a ete trouvee.\n", idRecherche);
+    }
+}
+
 void filtrerparpriorite() {}
 void ordonnerlestaches() {}
 void filtrerparstatus(){}
