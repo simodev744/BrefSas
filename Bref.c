@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include<string.h>
+#include<stdlib.h>
+#include <time.h>
 
 struct Date{
     int jour;
@@ -17,12 +19,12 @@ struct Tache{
     
 };
 
+
 struct Tache tache[100];
 int compteur=1;
 int taskidcompteur=0;
 
 
-void generatedata() {}
 
 //ajouter une tache 
 void ajoutertache(){
@@ -30,28 +32,27 @@ void ajoutertache(){
     taskidcompteur++;
     tache[compteur].id=taskidcompteur;
   
+    printf("entrez le titre : ");
+    scanf(" %[^\n]", tache[compteur].titre);
 
-    printf("entrez le titre \n");
-    scanf(" %s", tache[compteur].titre);
+    printf("entrez la description de la tache :");
+    scanf(" %[^\n]", tache[compteur].description);
 
-    printf("entrez la description de la tache  \n");
-    scanf(" %s", tache[compteur].description);
+    printf("entrez la priorite high/low :");
+    scanf(" %[^\n]", tache[compteur].priorite);
 
-    printf("entrez la priorite  \n");
-    scanf(" %s", tache[compteur].priorite);
-
-    printf("entrez le jour  \n");
+    printf("entrez le jour :");
     scanf(" %d", &tache[compteur].date.jour);
 
-    printf("entrez le mois  \n");
+    printf("entrez le mois :");
     scanf(" %d", &tache[compteur].date.mois);
 
 
-    printf("entrez l annee  \n");
-    scanf("%d", &tache[compteur].date.annee);
+    printf("entrez l'annee :");
+    scanf(" %d", &tache[compteur].date.annee);
 
-    printf("entrez status de la tache \n");
-    scanf(" %s", tache[compteur].status);
+    printf("entrez status de la tache complete / incomplete :");
+    scanf(" %[^\n]", tache[compteur].status);
 
     compteur++;
 
@@ -64,11 +65,11 @@ void afficherlestaches(){
 
         for (int i = 1; i < compteur ; i++)
     {
-      printf("------tache id  %d ---------- \n",tache[i].id);
-      printf("titre %s \n",tache[i].titre);
-      printf("description %s \n",tache[i].description);
-      printf("priotite %s \n",tache[i].priorite);
-      printf("date echeance  %d-%d-%d \n",tache[i].date.jour,tache[i].date.mois,tache[i].date.annee);
+      printf("============tache id  %d=============== \n",tache[i].id);
+      printf("titre : %s \n",tache[i].titre);
+      printf("description : %s \n",tache[i].description);
+      printf("priotite : %s \n",tache[i].priorite);
+      printf("date echeance : %d-%d-%d \n",tache[i].date.jour,tache[i].date.mois,tache[i].date.annee);
       printf(" %s \n",tache[i].status);
 
     }
@@ -86,7 +87,7 @@ void miseajourtaches() {
             t = 1;
 
             //
-            printf("tache trouvee :\n");
+            printf("======Tache trouvee=========== :\n");
             printf("id : %d\n", tache[i].id);
             printf("titre : %s\n", tache[i].titre);
             printf("description : %s\n", tache[i].description);
@@ -96,16 +97,16 @@ void miseajourtaches() {
 
         
             printf("entrez le nouveau titre (actuel : %s) : ", tache[i].titre);
-            scanf(" %s", tache[i].titre);
+            scanf(" %[^\n]", tache[i].titre);
 
             printf("entrez la nouvelle description (actuelle : %s) : ", tache[i].description);
-            scanf(" %s", tache[i].description);
+            scanf(" %[^\n]", tache[i].description);
 
             printf("entrez la nouvelle priorite (actuelle : %s) : ", tache[i].priorite);
             scanf(" %s", tache[i].priorite);
 
             printf("entrez le nouveau jour (actuel : %d) : ", tache[i].date.jour);
-            scanf("%d", &tache[i].date.jour);
+            scanf(" %d", &tache[i].date.jour);
 
             printf("entrez le nouveau mois (actuel : %d) : ", tache[i].date.mois);
             scanf("%d", &tache[i].date.mois);
@@ -114,7 +115,7 @@ void miseajourtaches() {
             scanf("%d", &tache[i].date.annee);
 
             printf("entrez le nouveau status (actuel : %s) : ", tache[i].status);
-            scanf(" %s", tache[i].status);
+            scanf(" %[^\n]", tache[i].status);
 
             printf("La tache est mise a jour !\n");
             break;
@@ -129,7 +130,7 @@ void miseajourtaches() {
 // fonction supprimee  
 void supprimertaches() {
     int idRecherche;
-    int t = 0;
+    int t = 0;   // i 
     printf("entrez l'id de la tache que vous voulez supprimer : ");
     scanf("%d", &idRecherche);
 
@@ -137,7 +138,7 @@ void supprimertaches() {
         if (tache[i].id == idRecherche) {
             t= 1;
 
-            printf("tache trouvee:\n");
+            printf("==========Tache trouvee=============:\n");
             printf("id : %d\n", tache[i].id);
             printf("titre : %s\n", tache[i].titre);
             printf("description : %s\n", tache[i].description);
@@ -166,11 +167,9 @@ void  filtrerparpriorite() {
 
     printf("Entrez une priorité : \n");
     scanf("%s", priorite);
-
     for (int i = 0; i < compteur; i++) {  
-
         if (strcmp(tache[i].priorite, priorite) == 0) {  
-            printf("------Tâche ID %d ---------- \n", tache[i].id);
+            printf("================Tâche ID %d ================= \n", tache[i].id);
             printf("Titre: %s \n", tache[i].titre);
             printf("Description: %s \n", tache[i].description);
             printf("Priorité: %s \n", tache[i].priorite);
@@ -180,16 +179,22 @@ void  filtrerparpriorite() {
     }
 }
 
+
+//ordonner les taches
+void ordonnerlestaches() {
+    printf("cette fonctionalité sera disponible dans les prochaines versions \n");
+}
+
 //fonction filtrer par status 
 void  filtrerparstatus(){  
     char status[50];
-    printf("entrez le status completed/uncompleted : \n");
+    printf("entrez le status completed/incompleted : \n");
     scanf("%s", status);
 
     for (int i = 0; i < compteur; i++) {  
 
         if (strcmp(tache[i].status, status) == 0) {  
-            printf("------tache ID %d ---------- \n", tache[i].id);
+            printf("============tache ID %d============== \n", tache[i].id);
             printf("titre: %s \n", tache[i].titre);
             printf("description: %s \n", tache[i].description);
             printf("priorité: %s \n", tache[i].priorite);
@@ -200,6 +205,42 @@ void  filtrerparstatus(){
 
 }   
 
+
+
+
+//generer des pseudo taches pour tester l'application 
+void generatedata() {
+    int nombreDeTaches;
+    printf("Entrez nbre tache que vous voulez ajouter \n");
+    scanf("%d", &nombreDeTaches);
+    srand(time(NULL)); 
+
+    for (int i = 0; i < nombreDeTaches; i++) {
+        taskidcompteur++;
+        tache[compteur].id = taskidcompteur;
+        
+   
+        sprintf(tache[compteur].titre, "Tache_%d", taskidcompteur);
+   
+        sprintf(tache[compteur].description, "Description_%d", taskidcompteur);
+   
+        char* priorites[] = {"high", "low"};
+        strcpy(tache[compteur].priorite, priorites[rand() % 2]);
+
+      
+        tache[compteur].date.jour = rand() % 28 + 1; 
+        tache[compteur].date.mois = rand() % 12 + 1; 
+        tache[compteur].date.annee = 2024 + rand() % 5; 
+  
+        char* status[] = {"complete", "incomplete"};
+        strcpy(tache[compteur].status, status[rand() % 2]);
+
+        compteur++;
+    }
+
+    printf("%d taches generee avec succes\n", nombreDeTaches);
+}
+
 // Fonction pour enregistrer les taches 
 void stocker() {
     FILE *fichier = fopen("tache.txt", "w");  
@@ -209,7 +250,7 @@ void stocker() {
     }
 
     for (int i = 1; i < compteur; i++) {
-        fprintf(fichier, "---------tache id %d ----------\n", tache[i].id);
+        fprintf(fichier, "==============tache id %d ==================\n", tache[i].id);
         fprintf(fichier, "titre : %s\n", tache[i].titre);
         fprintf(fichier, "description : %s\n", tache[i].description);
         fprintf(fichier, "priorité : %s\n", tache[i].priorite);
@@ -221,24 +262,25 @@ void stocker() {
     printf("Les tâches est enregistrer  dans le fichier tache.txt.\n");
 }
 
-void ordonnerlestaches() {}
+
+
  //menu 
 void menu(){
-    printf("----------------------------task-managment---------------------------------------------\n");
-    printf("  1.ajouter une tache  \n");
-    printf("  2.afficher les taches  \n");
-    printf("  3.mise a jour une tache  \n");
-    printf("  4.supprimer une tache  \n");
-    printf("  5.filtrer les tache par priorite \n");
-    printf("  6.ordonner les taches  \n");
-    printf("  7.filtrer les tache par status \n");
-    printf("  8.stocker dans un fichier texte \n");
-    printf("  9.generer pseudo taches  \n");
-    printf("  10.quiter le programme \n");
+    printf("======================Task-management==================================\n");
+    printf("  1.Ajouter une tache  \n");
+    printf("  2.Afficher les taches  \n");
+    printf("  3.Mise a jour une tache  \n");
+    printf("  4.Supprimer une tache  \n");
+    printf("  5.Filtrer les taches par priorite \n");
+    printf("  6.Ordonner les taches  \n");
+    printf("  7.Filtrer les taches par status \n");
+    printf("  8.Stocker dans un fichier texte \n");
+    printf("  9.Generer pseudo taches  \n");
+    printf("  10.Effacer l'ecran  \n");
+    printf("  11.Quitter le programme \n");
 }
 
 int main(){
-    
  int choix;
  do
  {    
@@ -250,10 +292,8 @@ int main(){
         ajoutertache();
         break;
     case 2 :
-        afficherlestaches();
-        
+        afficherlestaches();    
         break;
-    
     case 3 :
        miseajourtaches();
         
@@ -271,11 +311,15 @@ int main(){
       filtrerparstatus();     
         break;
      case 8 :
-     stocker();      
+      stocker();      
        break;
 
      case 9 :
       generatedata();      
+       break;
+
+     case 10 :
+      system("cls");      
        break;
        default:
         printf("choix invalide choisissez entre 1 et 10 \n"); 
@@ -283,6 +327,6 @@ int main(){
     }
    
  } 
- while (choix!=10);
+ while (choix!=11);
   return 0;
 }
